@@ -1,0 +1,45 @@
+package rules
+
+import com.utkarsh.model.Outlook
+
+rule "Available"
+	when 
+		outlookObject: Outlook(color=="Green" || color=="green")
+	then
+		outlookObject.setStatus("Available");
+	end
+
+rule "Busy"
+	when 
+		outlookObject: Outlook(color=="Orange" || color=="orange")
+	then
+		outlookObject.setStatus("Busy");
+	end
+
+rule "Out of Office"
+	when 
+		outlookObject: Outlook(color=="Purple" || color=="purple")
+	then
+		outlookObject.setStatus("Out of Office");
+	end
+
+rule "Do Not Disturb"
+	when 
+		outlookObject: Outlook(color=="Red" || color=="red")
+	then
+		outlookObject.setStatus("Do Not Disturb");
+	end
+
+rule "Away"
+	when 
+		outlookObject: Outlook(color=="Yellow" || color=="yellow")
+	then
+		outlookObject.setStatus("Away");
+	end
+
+rule "In a Call"
+	when 
+		outlookObject: Outlook(color=="Blue" || color=="blue")
+	then
+		outlookObject.setStatus("In a Call");
+	end

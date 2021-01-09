@@ -1,0 +1,75 @@
+package com.rules
+import com.utyadav.model.Covid
+
+rule "1"
+	salience 100
+	when
+		covidObject: Covid(symptom =="1")
+	then
+		covidObject.setSeverity(150);
+	end
+
+rule "2"
+	salience 100
+	when
+		covidObject: Covid(symptom =="2")
+	then
+		covidObject.setSeverity(250);
+	end
+
+rule "3"
+	salience 100
+	when
+		covidObject: Covid(symptom =="Sustained loss of smell, taste or appetite")
+	then
+		covidObject.setSeverity(50);
+	end
+	
+rule "4"
+	salience 100
+	when
+		covidObject: Covid(symptom =="loss of speech or movement")
+	then
+		covidObject.setSeverity(100);
+	end
+
+rule "5"
+	salience 100
+	when
+		covidObject: Covid(symptom =="fever & tiredness")
+	then
+		covidObject.setSeverity(50);
+	end
+
+rule "6"
+	salience 100
+	when
+		covidObject: Covid(symptom =="dry cough")
+	then
+		covidObject.setSeverity(50);
+	end
+
+rule "7"
+	salience 50
+	when
+		covidObject: Covid(severity > 0 && severity <= 150)
+	then
+		covidObject.setResults("Low");
+	end
+
+rule "8"
+	salience 50
+	when
+		covidObject: Covid(severity >= 151 && severity <= 250)
+	then
+		covidObject.setResults("Moderate");
+	end
+	
+rule "9"
+	salience 50
+	when
+		covidObject: Covid(severity >= 251 && severity <= 1000)
+	then
+		covidObject.setResults("High");
+	end
+
